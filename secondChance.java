@@ -49,24 +49,19 @@ class secondChance
 	
 	static void run(String example, int frames)
 	{
-		int pointer,i,l,x,pf;
+		int pointer,i,aux,x,pf;
 		int arr[] = new int[frames];
 		boolean marker[] = new boolean[frames];
 		String page[] = example.split(" ");
 		System.out.println("Page situation: "+Arrays.toString(page));
 
 		pointer = 0;
-		
 		pf = 0;
-		
-		
-		
 		Arrays.fill(arr,-1);
 		
+		aux = page.length;
 		
-		l = page.length;
-		
-		for(i = 0; i<l; i++)
+		for(i = 0; i<aux; i++)
 		{
 			
 			x = Integer.parseInt(page[i]);
