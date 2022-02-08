@@ -4,6 +4,8 @@ A modified form of the FIFO page replacement algorithm, known as the Second-chan
 
 As its name suggests, Second-chance gives every page a "second-chance" – an old page that has been referenced is probably in use, and should not be swapped out over a new page that has not been referenced.
 
+by Wikipedia
+
 ## Output
 
 ![output](https://github.com/vannisson/second-chance/blob/main/output.png)
