@@ -4,13 +4,15 @@ class secondChance
 {
 	public static void main(String args[])throws IOException
 	{
-		String example = "2 3 2 1 5 2 4 5 3 2 3 5";
-		int frames = 3;
+		// Creating an page example 
+		String example = "2 3 2 1 5 2 4 5 3 2 3 5 1 3 2 1 1";
+		// Setting the number of frames
+		int frames = 4;
 		
-		printHitsAndFaults(example,frames);		
+		run(example,frames);		
 	}
 	
-	static boolean findAndUpdate(int x,int arr[],boolean second_chance[],int frames)
+	static boolean find(int x,int arr[],boolean marker[],int frames)
 	{
 		int i;
 
@@ -19,7 +21,7 @@ class secondChance
 			
 			if(arr[i] == x)
 			{
-				second_chance[i] = true;
+				marker[i] = true;
 				
 				return true;
 			}
@@ -28,53 +30,54 @@ class secondChance
 		
 	}
 	
-	static int replaceAndUpdate(int x,int arr[],
-				boolean second_chance[],int frames,int pointer)
+	static int replace(int x,int arr[], boolean marker[],int frames,int pointer)
 	{
 		while(true)
 		{
-			
-			if(!second_chance[pointer])
+			if(!marker[pointer])
 			{
 				arr[pointer] = x;
 				
 				return (pointer+1)%frames;
 			}
 			
-			second_chance[pointer] = false;
+			marker[pointer] = false;
 			
 			pointer = (pointer+1)%frames;
-		}
+			}
 	}
 	
-	static void printHitsAndFaults(String example,
-												int frames)
+	static void run(String example, int frames)
 	{
 		int pointer,i,l,x,pf;
-		
+		int arr[] = new int[frames];
+		boolean marker[] = new boolean[frames];
+		String page[] = example.split(" ");
+		System.out.println("Page situation: "+Arrays.toString(page));
+
 		pointer = 0;
 		
 		pf = 0;
 		
-		int arr[] = new int[frames];
+		
 		
 		Arrays.fill(arr,-1);
 		
-		boolean second_chance[] = new boolean[frames];
 		
-		String str[] = example.split(" ");
-		
-		l = str.length;
+		l = page.length;
 		
 		for(i = 0; i<l; i++)
 		{
 			
-			x = Integer.parseInt(str[i]);
+			x = Integer.parseInt(page[i]);
+			System.out.println("Page element: "+x);
+			System.out.println("Second Chance frame: "+Arrays.toString(marker));
+			
 
-			if(!findAndUpdate(x,arr,second_chance,frames))
+			if(!find(x,arr,marker,frames))
 			{
-				pointer = replaceAndUpdate(x,arr,
-						second_chance,frames,pointer);
+				pointer = replace(x,arr,
+						marker,frames,pointer);
 				
 				pf++;
 			}
