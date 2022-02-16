@@ -90,7 +90,10 @@ class secondChance
 						marker,frames,pointer);
 				// Increases the number of page fault
 				pf++;
+				System.out.println("Page Fault Number: "+ pf);
+				
 			}
+			System.out.println("---------------------");
 		}
 		
 		System.out.println("Total page faults were "+pf);
